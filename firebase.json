@@ -1,0 +1,8 @@
+{
+  "firestore": [
+    {
+      "database": "ai-studio-android-meetmind-a9b2ba57-a6d6-4228-aad4-aeb80284fc28",
+      "rules": "firestore.rules"
+    }
+  ]
+}

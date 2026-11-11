@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MeetMind Firestore Blueprint",
+  "description": "Schema definition for MeetMind AI Firestore database",
+  "collections": {
+    "users": {
+      "description": "User profiles and enterprise permissions",
+      "fields": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "role": { "type": "string", "enum": ["ADMIN", "MANAGER", "EMPLOYEE"] },
+        "department": { "type": "string" }
+      }
+    },
+    "meetings": {
+      "description": "Recorded meetings, metadata, and AI analyses",
+      "fields": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "language": { "type": "string" },
+        "durationSeconds": { "type": "number" },
+        "dateFormatted": { "type": "string" },
+        "timeFormatted": { "type": "string" },
+        "participantIds": { "type": "array", "items": { "type": "string" } },
+        "executiveSummary": { "type": "string" },
+        "importantDecisions": { "type": "array", "items": { "type": "string" } }
+      },
+      "subcollections": {
+        "transcripts": {
+          "description": "Diarized speech segments",
+          "fields": {
+            "id": { "type": "string" },
+            "speakerId": { "type": ["string", "null"] },
+            "speakerName": { "type": "string" },
+            "text": { "type": "string" },
+            "timestampFormatted": { "type": "string" },
+            "isUnknownSpeaker": { "type": "boolean" },
+            "confidenceScore": { "type": "number" }
+          }
+        }
+      }
+    },
+    "tasks": {
+      "description": "Action items extracted from meetings",
+      "fields": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "assignedPersonId": { "type": ["string", "null"] },
+        "assignedPersonName": { "type": ["string", "null"] },
+        "assignedById": { "type": "string" },
+        "assignedByName": { "type": "string" },
+        "startDate": { "type": "string" },
+        "dueDate": { "type": "string" },
+        "priority": { "type": "string", "enum": ["HIGH", "MEDIUM", "LOW"] },
+        "meetingId": { "type": "string" },
+        "meetingTitle": { "type": "string" },
+        "transcriptReferenceQuote": { "type": "string" },
+        "status": { "type": "string", "enum": ["PENDING", "IN_PROGRESS", "BLOCKED", "COMPLETED", "CANCELLED"] },
+        "needsManagerApproval": { "type": "boolean" },
+        "isApprovedByManager": { "type": "boolean" }
+      }
+    }
+  }
+}

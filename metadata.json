@@ -1,0 +1,6 @@
+{
+  "name": "MeetMind AI",
+  "description": "Intelligent meeting assistant that records team meetings, identifies speakers, analyzes conversations, extracts tasks, and tracks deadlines.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
